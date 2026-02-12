@@ -7,6 +7,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import ContactForm from "../components/ContactForm";
 import ScheduleSection from "../components/ScheduleSection";
 import MapSection from "../components/MapSection";
+import EnrollmentSection from "../components/EnrollmentSection";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import {
@@ -258,6 +259,8 @@ export default function LandingPage() {
 			</section>
 
 			<ScheduleSection />
+
+			<EnrollmentSection />
 
 			<MapSection />
 
