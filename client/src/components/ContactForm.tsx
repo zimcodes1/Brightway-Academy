@@ -3,13 +3,29 @@ import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { useRef } from 'react';
 import sendEmail from '../utils/sendMail';
+import SuccessModal from './modals/SuccessModal';
+import FailureModal from './modals/FailureModal';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const form = useRef<HTMLFormElement>(null);
+  
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    sendEmail({ e, form });
-    setFormData({ name: '', email: '', message: '' });
+    sendEmail({ 
+      e, 
+      form,
+      onSuccess: () => {
+        setShowSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+      },
+      onFailure: (error) => {
+        setErrorMsg(error);
+        setShowFailure(true);
+      }
+    });
   };
 
   return (
@@ -68,6 +84,8 @@ export default function ContactForm() {
           Send Message
         </motion.button>
       </form>
+      {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
+      {showFailure && <FailureModal onClose={() => setShowFailure(false)} error={errorMsg} />}
     </motion.div>
   );
 }
