@@ -1,14 +1,14 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import { useRef } from 'react';
+import sendEmail from '../utils/sendMail';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+  const form = useRef<HTMLFormElement>(null);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    sendEmail({ e, form });
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -21,12 +21,13 @@ export default function ContactForm() {
       className="bg-white  border border-gray-200 p-8 rounded-xl shadow-lg"
     >
       <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form ref={form} onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
           <input
             type="text"
             id="name"
+            name='name'
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -38,6 +39,7 @@ export default function ContactForm() {
           <input
             type="email"
             id="email"
+            name='email'
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -47,6 +49,7 @@ export default function ContactForm() {
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
           <textarea
+            name='message'
             id="message"
             required
             rows={4}
