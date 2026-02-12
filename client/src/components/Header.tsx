@@ -19,6 +19,7 @@ export default function Header() {
             <NavLink to="/about" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>About</NavLink>
             <Link to="/#programs" className="text-gray-600 hover:text-indigo-600 transition">Features</Link>
             <Link to="/#contact" className="text-gray-600 hover:text-indigo-600 transition">Contact</Link>
+            <NavLink to="/gallery" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>Gallery</NavLink>
           </nav>
           <button onClick={() => setMobileMenuOpen(true)} className="md:hidden">
             <Menu className="w-6 h-6 text-gray-600" />
