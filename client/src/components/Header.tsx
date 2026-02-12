@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,8 +17,8 @@ export default function Header() {
           <nav className="hidden md:flex gap-8">
             <NavLink to="/" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>Home</NavLink>
             <NavLink to="/about" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>About</NavLink>
-            <NavLink to="/features" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>Features</NavLink>
-            <NavLink to="/#contact" className={({ isActive }) => isActive ? activeClass : "text-gray-600 hover:text-indigo-600 transition"}>Contact</NavLink>
+            <Link to="/#programs" className="text-gray-600 hover:text-indigo-600 transition">Features</Link>
+            <Link to="/#contact" className="text-gray-600 hover:text-indigo-600 transition">Contact</Link>
           </nav>
           <button onClick={() => setMobileMenuOpen(true)} className="md:hidden">
             <Menu className="w-6 h-6 text-gray-600" />

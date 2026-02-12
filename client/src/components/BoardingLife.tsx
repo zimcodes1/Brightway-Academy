@@ -32,7 +32,7 @@ export default function BoardingLife() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-lg text-center font-semibold text-gray-800"
+                  className="bg-gradient-to-br border border-gray-200 from-indigo-50 to-purple-50 p-4 rounded-lg text-center font-semibold text-gray-800"
                 >
                   {house}
                 </motion.div>
